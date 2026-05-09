@@ -767,6 +767,56 @@ body {
 .footer-bar a { color: var(--ink); text-decoration: none; opacity: 0.9; transition: opacity 0.18s ease; }
 .footer-bar a:hover { opacity: 1; }
 
+/* ─── 03 · Cockpit scroll-driven reveal (Chrome/Edge 115+) ─ */
+@supports (animation-timeline: view()) {
+
+  .section-cockpit {
+    view-timeline-name: --cockpit;
+    view-timeline-axis: block;
+  }
+
+  /* Image: clip from centre outward + scale + colour */
+  @keyframes cockpit-reveal {
+    0% {
+      clip-path: inset(42% 0 42% 0);
+      filter: brightness(0.04) saturate(0) contrast(2);
+      transform: scale(1.12);
+    }
+    100% {
+      clip-path: inset(0% 0% 0% 0%);
+      filter: brightness(1) saturate(1) contrast(1.1);
+      transform: scale(1);
+    }
+  }
+  .cockpit-img {
+    animation: cockpit-reveal linear both;
+    animation-timeline: --cockpit;
+    animation-range: entry 0% entry 62%;
+    will-change: clip-path, filter, transform;
+  }
+
+  /* Subtle parallax while scrolling through */
+  @keyframes cockpit-parallax {
+    from { object-position: center 58%; }
+    to   { object-position: center 42%; }
+  }
+  /* Corners + caption fade as section enters */
+  @keyframes cockpit-ui-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .cockpit-corner {
+    animation: cockpit-ui-in linear both;
+    animation-timeline: --cockpit;
+    animation-range: entry 38% entry 72%;
+  }
+  .cockpit-caption {
+    animation: cockpit-ui-in linear both;
+    animation-timeline: --cockpit;
+    animation-range: entry 44% entry 78%;
+  }
+}
+
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 880px) {
   .onoff-grid { grid-template-columns: 1fr; gap: 12px; padding: 100px 24px 48px; }
