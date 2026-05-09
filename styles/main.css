@@ -701,6 +701,28 @@ body {
 }
 .footer-sponsors .sp:hover { opacity: 1; }
 
+/* ─── Sponsors marquee ───────────────────────────────────── */
+.footer-sponsors {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+.sponsors-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  align-items: center;
+  animation: sponsors-marquee 26s linear infinite;
+}
+.sponsors-track:hover { animation-play-state: paused; }
+@keyframes sponsors-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── ON scribble — draw-in initial state ────────────────── */
+.onoff-h.on .scribble path { fill: none; }
+
 .footer-cta-wrap {
   position: relative;
   z-index: 8;
