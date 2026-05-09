@@ -262,6 +262,32 @@ body {
   box-shadow: 0 0 0 4px rgba(225,10,26,0.15);
 }
 
+.sound-btn {
+  appearance: none;
+  border: 1px solid rgba(243,243,243,0.18);
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.sound-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.sound-btn:hover { color: var(--ink); border-color: rgba(243,243,243,0.4); }
+.sound-btn[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: rgba(243,243,243,0.35);
+  background: rgba(243,243,243,0.06);
+}
+.icon-sound { display: none; }
+
 /* ─── 02 · On / Off Track ────────────────────────────────── */
 .section-onoff {
   position: relative;
