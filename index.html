@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>H7 · Racing Concept</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/main.css" />
+
+  <!-- React + Babel (CDN, no build step) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     01 · Hero
+     ════════════════════════════════════════════════ -->
+<div class="stage" id="stage" data-screen-label="01 Hero">
+
+  <video class="bg-video" id="bgVideo"
+         src="assets/hero-bg.mp4"
+         autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="bg-fade" id="bgFade" aria-hidden="true"></div>
+  <script src="js/video-fade.js"></script>
+
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="brand-name" id="brandName">
+      <span>H7</span>
+      <span>RACING</span>
+    </div>
+
+    <div class="monogram" aria-label="H7 monogram">
+      H<span class="seven">7</span>
+    </div>
+
+    <div class="nav-right">
+      <button class="btn btn-store" type="button">
+        <span class="dot"></span>
+        Store
+      </button>
+      <button class="btn btn-icon" type="button" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M5 9h14" /><path d="M5 15h14" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="hero" aria-hidden="true"></main>
+
+  <aside class="race-card">
+    <div class="label">Next Race</div>
+    <div class="track" aria-hidden="true">
+      <svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 70 C 8 50, 22 32, 40 36 C 56 40, 60 22, 78 18 C 94 14, 108 28, 104 46 C 100 62, 84 64, 72 56 C 60 48, 50 60, 56 70 C 62 80, 86 78, 96 70" />
+        <circle cx="14" cy="70" r="2.6" fill="var(--accent)" stroke="none" />
+      </svg>
+    </div>
+    <div class="divider"></div>
+    <div class="city">Suzuka GP</div>
+    <div class="crest" aria-hidden="true">
+      <svg viewBox="0 0 50 44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M25 4 L40 12 V26 C 40 34, 33 38, 25 42 C 17 38, 10 34, 10 26 V12 Z" />
+        <text x="25" y="26" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="11" fill="currentColor" stroke="none">H7</text>
+      </svg>
+    </div>
+    <div class="team">H7 Racing<br/><em>Concept · 2026</em></div>
+  </aside>
+
+  <div class="meta">
+    <div class="row"><span class="red-dot"></span> Season 26 · Round 12</div>
+  </div>
+
+  <div id="tweaks-root"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     02 · On / Off Track
+     ════════════════════════════════════════════════ -->
+<section class="section-onoff" data-screen-label="02 On Off Track">
+
+  <div class="onoff-topo" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <g fill="none" stroke="currentColor" stroke-width="1.2">
+        <ellipse cx="800" cy="450" rx="540" ry="260" />
+        <ellipse cx="800" cy="450" rx="640" ry="320" />
+        <ellipse cx="800" cy="450" rx="740" ry="380" />
+        <ellipse cx="800" cy="450" rx="840" ry="440" />
+        <path d="M-100 600 C 200 540, 420 700, 700 600 S 1180 470, 1500 560 1900 700 1900 700" />
+        <path d="M-100 660 C 240 580, 460 740, 740 640 S 1220 510, 1540 600 1940 740 1940 740" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="onoff-side left" aria-hidden="true"></div>
+  <div class="onoff-side right" aria-hidden="true"></div>
+
+  <div class="onoff-eyebrow"><b>02</b> Two Worlds · One Driver</div>
+
+  <div class="onoff-grid">
+
+    <!-- ON TRACK -->
+    <div class="onoff-col">
+      <h2 class="onoff-h on">
+        ON<br/>TRACK
+        <span class="scribble" aria-hidden="true">
+          <svg viewBox="0 0 240 120" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 30 C 26 32, 18 70, 38 88 C 60 104, 92 92, 92 64 C 92 40, 70 28, 50 30 Z" />
+            <path d="M120 92 L120 28" />
+            <path d="M120 28 L172 92" />
+            <path d="M172 92 L172 28" />
+            <path d="M30 108 C 80 102, 150 106, 200 100" opacity="0.65" />
+          </svg>
+        </span>
+      </h2>
+      <p class="onoff-desc">Most recent results, lap-time data, telemetry and photos straight from trackside garages.</p>
+      <button class="onoff-cta" type="button" aria-label="Open On Track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 L19 5" /><path d="M9 5 L19 5 L19 15" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="onoff-divider" aria-hidden="true"></div>
+
+    <!-- OFF TRACK -->
+    <div class="onoff-col right-col">
+      <h2 class="onoff-h off">
+        OFF<br/>TRACK
+      </h2>
+      <p class="onoff-desc">Campaigns, behind-the-scenes shoots and the H7 lifestyle universe — everything beyond the chequered flag.</p>
+      <button class="onoff-cta" type="button" aria-label="Open Off Track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 19 L19 5" /><path d="M9 5 L19 5 L19 15" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     03 · Cockpit
+     ════════════════════════════════════════════════ -->
+<section class="section-cockpit" data-screen-label="03 Cockpit">
+  <img class="cockpit-img" src="assets/h7-cockpit.png" alt="H7 driver in cockpit" />
+  <div class="cockpit-overlay" aria-hidden="true"></div>
+
+  <div class="cockpit-corner tl">
+    <span class="k">07</span>
+    <span class="v">DRIVER</span>
+  </div>
+  <div class="cockpit-corner tr">
+    <span class="k">H7</span>
+    <span class="v">CHASSIS · 26</span>
+  </div>
+
+  <div class="cockpit-caption">
+    <span class="eyebrow"><b>03</b> Cockpit</span>
+    <h2>Eyes <em>on</em> the apex.</h2>
+  </div>
+
+  <div class="cockpit-corner bl">
+    <span class="v">RPM · 12,400</span>
+    <span class="v">GEAR · 6</span>
+  </div>
+  <div class="cockpit-corner br">
+    <span class="v">SECTOR 2</span>
+    <span class="v">+0.184s</span>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     04 · Footer
+     ════════════════════════════════════════════════ -->
+<footer class="site-footer" data-screen-label="04 Footer">
+  <div class="footer-inner">
+
+    <div class="footer-topo" aria-hidden="true">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+        <g fill="none" stroke="currentColor" stroke-width="1">
+          <ellipse cx="800" cy="450" rx="540" ry="260" />
+          <ellipse cx="800" cy="450" rx="640" ry="320" />
+          <ellipse cx="800" cy="450" rx="740" ry="380" />
+          <ellipse cx="800" cy="450" rx="840" ry="440" />
+          <ellipse cx="800" cy="450" rx="940" ry="500" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="footer-stage">
+      <div class="footer-headline">
+        <svg class="signature" viewBox="0 0 320 80" aria-hidden="true">
+          <path d="M 14 50 C 30 18, 50 14, 70 36 C 84 52, 96 30, 110 22 C 132 10, 150 36, 144 56 C 140 70, 156 60, 170 48 C 188 32, 210 24, 232 38 C 252 50, 268 32, 282 24 L 296 22 M 244 60 L 304 56"
+                fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="line">ALWAYS <em>BRINGING</em></span>
+        <span class="line">THE <em>FIGHT</em>.</span>
+      </div>
+
+      <div class="footer-driver" aria-hidden="true">
+        <img src="assets/h7-driver-footer.png" alt="" />
+      </div>
+
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col left">
+          <span class="col-label">Pages</span>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">On Track</a></li>
+            <li><a href="#">Off Track</a></li>
+            <li><a href="#">Calendar</a></li>
+          </ul>
+          <a class="col-cta" href="#">Store</a>
+        </div>
+        <div class="footer-col right">
+          <span class="col-label">Follow on</span>
+          <ul>
+            <li><a href="#">Tiktok</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Youtube</a></li>
+            <li><a href="#">Twitch</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-sponsors" aria-label="Sponsors">
+      <span class="sp">PURE<small>ELECTRIC</small></span>
+      <span class="sp boxed">odd</span>
+      <span class="sp italic">apex</span>
+      <span class="sp">Google</span>
+      <span class="sp">RALPH</span>
+      <span class="sp">MONSTER</span>
+      <span class="sp boxed">Hilton</span>
+      <span class="sp italic">wearegrip</span>
+      <span class="sp">Uber</span>
+      <span class="sp">H7</span>
+    </div>
+  </div>
+
+  <div class="footer-cta-wrap">
+    <a class="footer-cta" href="#">
+      Business enquiries
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17 L17 7"/><path d="M9 7 L17 7 L17 15"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="footer-bar">
+    <span>© 2026 H7 Racing. All rights reserved.</span>
+    <div class="bar-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="image-slot.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="js/app.jsx"></script>
+
+</body>
+</html>
