@@ -53,66 +53,37 @@
     observer.observe(section);
   }
 
-  // ── 3. Cockpit — scroll-driven reveal ────────────────────
-  // Chrome/Edge 115+: CSS animation-timeline handles this natively (see main.css).
-  // Safari fallback: manual rAF scroll listener with identical math.
-  function initCockpitScrollFallback() {
-    if (CSS.supports('animation-timeline', 'view()')) return;
-
+  // ── 3. Cockpit — corners + caption fade on enter ─────────
+  function initCockpit() {
     var section = document.querySelector('.section-cockpit');
-    var img     = document.querySelector('.cockpit-img');
     var corners = Array.from(document.querySelectorAll('.cockpit-corner'));
     var caption = document.querySelector('.cockpit-caption');
-    if (!section || !img) return;
+    if (!section) return;
 
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-
-    // set initial state
-    Object.assign(img.style, {
-      clipPath: 'inset(42% 0 42% 0)', filter: 'brightness(0.04) saturate(0)',
-      transform: 'scale(1.12)', willChange: 'clip-path, filter, transform',
+    corners.forEach(function (c) {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(8px)';
     });
-    corners.forEach(function (c) { c.style.opacity = '0'; c.style.transform = 'translateY(10px)'; });
-    if (caption) { caption.style.opacity = '0'; caption.style.transform = 'translateY(12px)'; }
+    if (caption) { caption.style.opacity = '0'; caption.style.transform = 'translateY(8px)'; }
 
-    var cornersShown = false;
-    var ticking      = false;
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      observer.disconnect();
+      corners.forEach(function (c, i) {
+        setTimeout(function () {
+          c.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+          c.style.opacity    = '1';
+          c.style.transform  = 'translateY(0)';
+        }, i * 150);
+      });
+      if (caption) setTimeout(function () {
+        caption.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        caption.style.opacity    = '1';
+        caption.style.transform  = 'translateY(0)';
+      }, 250);
+    }, { threshold: 0.2 });
 
-    function update() {
-      ticking = false;
-      var rect = section.getBoundingClientRect();
-      var vh   = window.innerHeight;
-      // 0 when section top hits viewport bottom → 1 when section top is 35% from top
-      var p = easeOut(clamp((vh - rect.top) / (vh * 0.65), 0, 1));
-
-      var clip = lerp(42, 0, p);
-      img.style.clipPath  = 'inset(' + clip.toFixed(2) + '% 0 ' + clip.toFixed(2) + '% 0)';
-      img.style.filter    = 'brightness(' + lerp(0.04, 1, p).toFixed(3) + ') saturate(' + p.toFixed(3) + ')';
-      img.style.transform = 'scale(' + lerp(1.12, 1, p).toFixed(4) + ')';
-
-      if (p > 0.55 && !cornersShown) {
-        cornersShown = true;
-        corners.forEach(function (c, i) {
-          setTimeout(function () {
-            c.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            c.style.opacity    = '1';
-            c.style.transform  = 'translateY(0)';
-          }, i * 130);
-        });
-        if (caption) setTimeout(function () {
-          caption.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-          caption.style.opacity    = '1';
-          caption.style.transform  = 'translateY(0)';
-        }, 220);
-      }
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
+    observer.observe(section);
   }
 
   // ── 4. "07" counter ──────────────────────────────────────
@@ -150,7 +121,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     initTrack();
     initOnScribble();
-    initCockpitScrollFallback();
+    initCockpit();
     initCounter();
   });
 
