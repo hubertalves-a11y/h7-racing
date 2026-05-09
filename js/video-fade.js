@@ -41,15 +41,16 @@
   function loop() { tick(); requestAnimationFrame(loop); }
   requestAnimationFrame(loop);
 
-  // ── Sound toggle ──────────────────────────────────────────
-  var btn = document.getElementById('soundBtn');
-  if (btn) {
+  // ── Sound toggle (aguarda o DOM completo) ─────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('soundBtn');
+    if (!btn) return;
     btn.addEventListener('click', function () {
-      var on = v.muted;        // if currently muted, we're turning sound ON
+      var on = v.muted;
       v.muted = !on;
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       btn.querySelector('.icon-muted').style.display = on ? 'none' : '';
       btn.querySelector('.icon-sound').style.display = on ? '' : 'none';
     });
-  }
+  });
 })();
