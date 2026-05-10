@@ -163,12 +163,69 @@
     observer.observe(section);
   }
 
+  // ── 5. Milestones — bidirecional ─────────────────────────
+  function initMilestones() {
+    var section = document.querySelector('.section-milestones');
+    if (!section) return;
+
+    var entries = Array.from(section.querySelectorAll('.ms-entry'));
+
+    var entryObserver = new IntersectionObserver(function (obs) {
+      obs.forEach(function (ob) {
+        if (ob.isIntersecting) {
+          ob.target.classList.add('ms-in');
+        } else {
+          ob.target.classList.remove('ms-in');
+        }
+      });
+    }, { threshold: 0.35 });
+
+    entries.forEach(function (e) { entryObserver.observe(e); });
+
+    var lineObserver = new IntersectionObserver(function (obs) {
+      var isIn = obs[0].isIntersecting;
+      if (isIn) { section.classList.add('ms-live'); }
+      else { section.classList.remove('ms-live'); }
+    }, { threshold: 0.08 });
+
+    lineObserver.observe(section);
+  }
+
+  // ── 6. Lang toggle PT / EN ────────────────────────────────
+  function initLang() {
+    var btn = document.getElementById('langToggle');
+    if (!btn) return;
+
+    var lang = 'en';
+    var els  = Array.from(document.querySelectorAll('[data-pt]'));
+
+    // cache English markup on first run
+    els.forEach(function (el) {
+      el.setAttribute('data-en', el.innerHTML.trim());
+    });
+
+    function apply(l) {
+      els.forEach(function (el) {
+        el.innerHTML = l === 'pt' ? el.getAttribute('data-pt') : el.getAttribute('data-en');
+      });
+      btn.textContent = l === 'pt' ? 'EN' : 'PT';
+      btn.classList.toggle('lang-pt', l === 'pt');
+    }
+
+    btn.addEventListener('click', function () {
+      lang = lang === 'en' ? 'pt' : 'en';
+      apply(lang);
+    });
+  }
+
   // ── Run ───────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     initTrack();
     initOnScribble();
     initCockpit();
     initCounter();
+    initMilestones();
+    initLang();
   });
 
 })();

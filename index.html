@@ -45,9 +45,10 @@
     </div>
 
     <div class="nav-right">
+      <button class="btn-lang" id="langToggle" type="button" aria-label="Switch language">PT</button>
       <button class="btn btn-store" type="button">
         <span class="dot"></span>
-        Store
+        <span data-pt="Loja">Store</span>
       </button>
       <button class="btn btn-icon" type="button" aria-label="Menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -60,7 +61,7 @@
   <main class="hero" aria-hidden="true"></main>
 
   <aside class="race-card">
-    <div class="label">Next Race</div>
+    <div class="label" data-pt="Próxima Corrida">Next Race</div>
     <div class="track" aria-hidden="true">
       <svg viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 70 C 8 50, 22 32, 40 36 C 56 40, 60 22, 78 18 C 94 14, 108 28, 104 46 C 100 62, 84 64, 72 56 C 60 48, 50 60, 56 70 C 62 80, 86 78, 96 70" />
@@ -89,9 +90,9 @@
         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
       </svg>
-      <span>Sound</span>
+      <span data-pt="Som">Sound</span>
     </button>
-    <div class="row"><span class="red-dot"></span> Season 26 · Round 12</div>
+    <div class="row"><span class="red-dot"></span> <span data-pt="Temporada 26 · Rodada 12">Season 26 · Round 12</span></div>
   </div>
 
   <div id="tweaks-root"></div>
@@ -118,7 +119,7 @@
   <div class="onoff-side left" aria-hidden="true"></div>
   <div class="onoff-side right" aria-hidden="true"></div>
 
-  <div class="onoff-eyebrow"><b>02</b> Two Worlds · One Driver</div>
+  <div class="onoff-eyebrow"><b>02</b> <span data-pt="Dois Mundos · Um Piloto">Two Worlds · One Driver</span></div>
 
   <div class="onoff-grid">
 
@@ -136,7 +137,7 @@
           </svg>
         </span>
       </h2>
-      <p class="onoff-desc">Most recent results, lap-time data, telemetry and photos straight from trackside garages.</p>
+      <p class="onoff-desc" data-pt="Resultados recentes, dados de tempo de volta, telemetria e fotos direto das garagens.">Most recent results, lap-time data, telemetry and photos straight from trackside garages.</p>
       <button class="onoff-cta" type="button" aria-label="Open On Track">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 19 L19 5" /><path d="M9 5 L19 5 L19 15" />
@@ -151,7 +152,7 @@
       <h2 class="onoff-h off">
         OFF<br/>TRACK
       </h2>
-      <p class="onoff-desc">Campaigns, behind-the-scenes shoots and the H7 lifestyle universe — everything beyond the chequered flag.</p>
+      <p class="onoff-desc" data-pt="Campanhas, bastidores e o universo lifestyle H7 — tudo além da bandeira quadriculada.">Campaigns, behind-the-scenes shoots and the H7 lifestyle universe — everything beyond the chequered flag.</p>
       <button class="onoff-cta" type="button" aria-label="Open Off Track">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 19 L19 5" /><path d="M9 5 L19 5 L19 15" />
@@ -183,7 +184,7 @@
     <h2>
       <span class="ey-word" aria-label="Eyes">
         <span class="ey-l" style="--i:0">E</span><span class="ey-l" style="--i:1">y</span><span class="ey-l" style="--i:2">e</span><span class="ey-l" style="--i:3">s</span>
-      </span><span class="ey-rest"> <em>on</em> the apex.</span>
+      </span><span class="ey-rest"> <em>on</em> <span data-pt="o apex.">the apex.</span></span>
     </h2>
   </div>
 
@@ -198,9 +199,79 @@
 </section>
 
 <!-- ════════════════════════════════════════════════
-     04 · Footer
+     04 · Milestones
      ════════════════════════════════════════════════ -->
-<footer class="site-footer" data-screen-label="04 Footer">
+<section class="section-milestones" data-screen-label="04 Milestones">
+  <div class="ms-bg-num" aria-hidden="true">04</div>
+
+  <div class="ms-eyebrow">
+    <b>04</b>
+    <span data-pt="Os marcos que definiram a linha">Milestones that shaped the line</span>
+  </div>
+
+  <div class="ms-timeline">
+    <div class="ms-line" aria-hidden="true"></div>
+
+    <article class="ms-entry" data-side="left">
+      <div class="ms-year">2019</div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <div class="ms-body">
+        <h3 class="ms-title" data-pt="Nascida dos Dados">Born from Data</h3>
+        <p class="ms-desc" data-pt="O conceito nasce de pura ambição de engenharia — velocidade quantificada, então perseguida.">The concept is born from pure engineering ambition — speed quantified, then chased.</p>
+      </div>
+    </article>
+
+    <article class="ms-entry" data-side="right">
+      <div class="ms-year">2021</div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <div class="ms-body">
+        <h3 class="ms-title" data-pt="Primeiro Shakedown">First Shakedown</h3>
+        <p class="ms-desc" data-pt="Chassi 21 completa sua primeira passagem em Silverstone. O relógio começa.">Chassis 21 completes its first full run at Silverstone. The clock starts.</p>
+      </div>
+    </article>
+
+    <article class="ms-entry" data-side="left">
+      <div class="ms-year">2022</div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <div class="ms-body">
+        <h3 class="ms-title" data-pt="Protocolo Apex">Apex Protocol</h3>
+        <p class="ms-desc" data-pt="Telemetria H-TEL introduzida a bordo — 0,3 segundos encontrados por volta.">H-TEL onboard telemetry introduced — 0.3 seconds found per lap.</p>
+      </div>
+    </article>
+
+    <article class="ms-entry" data-side="right">
+      <div class="ms-year">2023</div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <div class="ms-body">
+        <h3 class="ms-title" data-pt="Nos Pontos">Into the Points</h3>
+        <p class="ms-desc" data-pt="Primeiro top-10 em Mônaco. Uma nova era de consistência começa.">First top-10 finish at Monaco. A new era of consistency begins.</p>
+      </div>
+    </article>
+
+    <article class="ms-entry" data-side="left">
+      <div class="ms-year">2024</div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <div class="ms-body">
+        <h3 class="ms-title" data-pt="Temporada de Fogo">Season of Fire</h3>
+        <p class="ms-desc" data-pt="Três pódios. Recorde de volta mais rápida em Monza. A equipe prova que pertence ao topo.">Three podiums. Fastest lap record at Monza. The team proves it belongs.</p>
+      </div>
+    </article>
+
+    <article class="ms-entry" data-side="right">
+      <div class="ms-year">2026</div>
+      <div class="ms-dot" aria-hidden="true"></div>
+      <div class="ms-body">
+        <h3 class="ms-title" data-pt="A Linha Continua">The Line Continues</h3>
+        <p class="ms-desc" data-pt="Chassi 26 revelado. Campeonato ao alcance. Sempre levando a luta.">Chassis 26 unveiled. Championship within reach. Always bringing the fight.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     05 · Footer
+     ════════════════════════════════════════════════ -->
+<footer class="site-footer" data-screen-label="05 Footer">
   <div class="footer-inner">
 
     <div class="footer-topo" aria-hidden="true">
@@ -221,8 +292,8 @@
           <path d="M 14 50 C 30 18, 50 14, 70 36 C 84 52, 96 30, 110 22 C 132 10, 150 36, 144 56 C 140 70, 156 60, 170 48 C 188 32, 210 24, 232 38 C 252 50, 268 32, 282 24 L 296 22 M 244 60 L 304 56"
                 fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span class="line">ALWAYS <em>BRINGING</em></span>
-        <span class="line">THE <em>FIGHT</em>.</span>
+        <span class="line" data-pt="SEMPRE <em>LEVANDO</em>">ALWAYS <em>BRINGING</em></span>
+        <span class="line" data-pt="A <em>LUTA</em>.">THE <em>FIGHT</em>.</span>
       </div>
 
       <div class="footer-driver" aria-hidden="true">
@@ -231,17 +302,17 @@
 
       <nav class="footer-cols" aria-label="Footer navigation">
         <div class="footer-col left">
-          <span class="col-label">Pages</span>
+          <span class="col-label" data-pt="Páginas">Pages</span>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">On Track</a></li>
-            <li><a href="#">Off Track</a></li>
-            <li><a href="#">Calendar</a></li>
+            <li><a href="#" data-pt="Início">Home</a></li>
+            <li><a href="#" data-pt="Em Pista">On Track</a></li>
+            <li><a href="#" data-pt="Fora de Pista">Off Track</a></li>
+            <li><a href="#" data-pt="Calendário">Calendar</a></li>
           </ul>
-          <a class="col-cta" href="#">Store</a>
+          <a class="col-cta" href="#" data-pt="Loja">Store</a>
         </div>
         <div class="footer-col right">
-          <span class="col-label">Follow on</span>
+          <span class="col-label" data-pt="Siga em">Follow on</span>
           <ul>
             <li><a href="#">Tiktok</a></li>
             <li><a href="#">Instagram</a></li>
@@ -281,7 +352,7 @@
 
   <div class="footer-cta-wrap">
     <a class="footer-cta" href="#">
-      Business enquiries
+      <span data-pt="Enquiries comerciais">Business enquiries</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
         <path d="M7 17 L17 7"/><path d="M9 7 L17 7 L17 15"/>
       </svg>
@@ -289,7 +360,7 @@
   </div>
 
   <div class="footer-bar">
-    <span>© 2026 H7 Racing. All rights reserved.</span>
+    <span data-pt="© 2026 H7 Racing. Todos os direitos reservados.">© 2026 H7 Racing. All rights reserved.</span>
     <div class="bar-links">
       <a href="#">Privacy Policy</a>
       <a href="#">Terms</a>
