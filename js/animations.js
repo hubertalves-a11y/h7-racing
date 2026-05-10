@@ -53,7 +53,7 @@
     observer.observe(section);
   }
 
-  // ── 3. Cockpit — corners + caption fade on enter ─────────
+  // ── 3. Cockpit — EYES drop + corners fade ────────────────
   function initCockpit() {
     var section = document.querySelector('.section-cockpit');
     var corners = Array.from(document.querySelectorAll('.cockpit-corner'));
@@ -61,26 +61,25 @@
     if (!section) return;
 
     corners.forEach(function (c) {
-      c.style.opacity = '0';
+      c.style.opacity   = '0';
       c.style.transform = 'translateY(8px)';
     });
-    if (caption) { caption.style.opacity = '0'; caption.style.transform = 'translateY(8px)'; }
 
     var observer = new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting) return;
       observer.disconnect();
+
+      // CSS animations on EYES letters — just add the class
+      if (caption) caption.classList.add('anim-in');
+
+      // corners stagger after letters finish (~550ms)
       corners.forEach(function (c, i) {
         setTimeout(function () {
           c.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
           c.style.opacity    = '1';
           c.style.transform  = 'translateY(0)';
-        }, i * 150);
+        }, 500 + i * 150);
       });
-      if (caption) setTimeout(function () {
-        caption.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        caption.style.opacity    = '1';
-        caption.style.transform  = 'translateY(0)';
-      }, 250);
     }, { threshold: 0.2 });
 
     observer.observe(section);

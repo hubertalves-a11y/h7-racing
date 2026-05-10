@@ -767,6 +767,50 @@ body {
 .footer-bar a { color: var(--ink); text-decoration: none; opacity: 0.9; transition: opacity 0.18s ease; }
 .footer-bar a:hover { opacity: 1; }
 
+/* ─── 03 · Cockpit caption — EYES animation ─────────────── */
+.ey-word { display: inline; }
+
+.ey-l {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-32px) scaleY(1.2);
+}
+.ey-rest {
+  display: inline;
+  opacity: 0;
+}
+
+/* triggered by .anim-in added via JS */
+.cockpit-caption.anim-in .ey-l {
+  animation: ey-drop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i) * 0.07s + 0.1s);
+}
+@keyframes ey-drop {
+  0%   { opacity: 0; transform: translateY(-32px) scaleY(1.2); }
+  55%  { opacity: 1; transform: translateY(5px) scaleY(0.94); }
+  75%  { transform: translateY(-2px) scaleY(1.02); }
+  100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+/* white glow burns in then fades as letters land */
+.cockpit-caption.anim-in .ey-word {
+  animation: ey-glow 2s ease 0.44s both;
+}
+@keyframes ey-glow {
+  0%   { text-shadow: none; }
+  30%  { text-shadow: 0 0 28px rgba(255,255,255,0.6), 0 0 60px rgba(255,255,255,0.22); }
+  100% { text-shadow: none; }
+}
+
+/* rest of heading fades in after EYES settle */
+.cockpit-caption.anim-in .ey-rest {
+  animation: ey-rest-in 0.8s ease 0.42s both;
+}
+@keyframes ey-rest-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
 /* ─── 03 · Cockpit — Ken Burns ───────────────────────────── */
 @keyframes ken-burns {
   from { transform: scale(1.0); object-position: center 52%; }
