@@ -163,32 +163,22 @@
     observer.observe(section);
   }
 
-  // ── 5. Milestones — bidirecional ─────────────────────────
+  // ── 5. Career Milestones cards — stagger fade-in ─────────
   function initMilestones() {
-    var section = document.querySelector('.section-milestones');
-    if (!section) return;
+    var cards = Array.from(document.querySelectorAll('.ms-card'));
+    if (!cards.length) return;
 
-    var entries = Array.from(section.querySelectorAll('.ms-entry'));
-
-    var entryObserver = new IntersectionObserver(function (obs) {
-      obs.forEach(function (ob) {
+    var observer = new IntersectionObserver(function (obs) {
+      obs.forEach(function (ob, i) {
         if (ob.isIntersecting) {
-          ob.target.classList.add('ms-in');
-        } else {
-          ob.target.classList.remove('ms-in');
+          var delay = (Array.from(cards).indexOf(ob.target) % 4) * 80;
+          setTimeout(function () { ob.target.classList.add('ms-in'); }, delay);
+          observer.unobserve(ob.target);
         }
       });
-    }, { threshold: 0.35 });
+    }, { threshold: 0.15 });
 
-    entries.forEach(function (e) { entryObserver.observe(e); });
-
-    var lineObserver = new IntersectionObserver(function (obs) {
-      var isIn = obs[0].isIntersecting;
-      if (isIn) { section.classList.add('ms-live'); }
-      else { section.classList.remove('ms-live'); }
-    }, { threshold: 0.08 });
-
-    lineObserver.observe(section);
+    cards.forEach(function (c) { observer.observe(c); });
   }
 
   // ── 6. Lang toggle PT / EN ────────────────────────────────
