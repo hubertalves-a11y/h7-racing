@@ -1,23 +1,42 @@
 (function () {
 
-  // ── 1. Race card track — desenha ao carregar (hero sempre visível) ──
+  // ── 1. Race card track — bidirecional ────────────────────
   function initTrack() {
     var path = document.querySelector('.race-card .track svg path');
     var dot  = document.querySelector('.race-card .track svg circle');
-    if (!path) return;
+    var card = document.querySelector('.race-card');
+    if (!path || !card) return;
 
     var len = path.getTotalLength();
     path.style.strokeDasharray  = len;
     path.style.strokeDashoffset = len;
-    if (dot) { dot.style.opacity = '0'; dot.style.transition = 'opacity 0.5s ease'; }
+    if (dot) { dot.style.opacity = '0'; }
 
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        path.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s';
-        path.style.strokeDashoffset = '0';
-        if (dot) setTimeout(function () { dot.style.opacity = '1'; }, 2500);
-      });
-    });
+    var dotTimer = null;
+
+    var observer = new IntersectionObserver(function (entries) {
+      var isIn = entries[0].isIntersecting;
+      clearTimeout(dotTimer);
+
+      if (isIn) {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            path.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1) 0.4s';
+            path.style.strokeDashoffset = '0';
+            if (dot) {
+              dot.style.transition = 'opacity 0.5s ease';
+              dotTimer = setTimeout(function () { dot.style.opacity = '1'; }, 2300);
+            }
+          });
+        });
+      } else {
+        path.style.transition = 'stroke-dashoffset 0.3s ease';
+        path.style.strokeDashoffset = len;
+        if (dot) { dot.style.transition = 'none'; dot.style.opacity = '0'; }
+      }
+    }, { threshold: 0.4 });
+
+    observer.observe(card);
   }
 
   // ── 2. ON scribble — bidirecional ─────────────────────────
@@ -98,7 +117,9 @@
           c.style.transform = 'translateY(8px)';
         }
       });
-    }, { threshold: 0.2 });
+    // rootMargin empurra o gatilho para baixo: só dispara quando
+    // a seção está bem visível (caption já entrou na tela)
+    }, { threshold: 0, rootMargin: '0px 0px -38% 0px' });
 
     observer.observe(section);
   }
@@ -137,7 +158,7 @@
         if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
         el.textContent = '00';
       }
-    }, { threshold: 0.15 });
+    }, { threshold: 0, rootMargin: '0px 0px -38% 0px' });
 
     observer.observe(section);
   }
